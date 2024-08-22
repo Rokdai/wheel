@@ -1,0 +1,89 @@
+.deal-wheel {
+  --size: clamp(250px, 80vmin, 700px);
+
+  --lg-hs: 0 3%;
+  --lg-stop: 50%;
+  --lg: linear-gradient(
+    hsl(var(--lg-hs) 0%) 0 var(--lg-stop),
+    hsl(var(--lg-hs) 20%) var(--lg-stop) 100%
+  );
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: var(--size);
+  height: var(--size);
+
+  font-size: calc(var(--size) / 21);
+}
+
+.spinner {
+  position: relative;
+
+  display: grid;
+  align-items: center;
+  grid-template-areas: "spinner";
+
+  width: var(--size);
+  height: var(--size);
+
+  border-radius: 50%;
+
+  transform: rotate(calc(var(--rotate, 25) * 1deg));
+}
+
+.spinner * {
+  grid-area: spinner;
+}
+
+.prize {
+  display: flex;
+  align-items: center;
+
+  width: 50%;
+  height: 50%;
+
+  padding: 0 calc(var(--size) / 6) 0 calc(var(--size) / 20);
+
+  transform-origin: center right;
+  transform: rotate(var(--rotate));
+
+  user-select: none;
+}
+
+.btn-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  background: black;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 18px;
+  color: white;
+
+  cursor: pointer;
+}
+
+.btn-spin:disabled {
+  cursor: progress;
+
+  opacity: 0.25;
+}
+
+.is-spinning .spinner {
+  transition: transform 10s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
